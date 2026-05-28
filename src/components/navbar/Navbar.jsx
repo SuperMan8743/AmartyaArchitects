@@ -1,33 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 function Navbar() {
+
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <>
-      <nav className="flex flex-row justify-between p-8 bg-black text-white h-full">
-        <div>
-          <a href="logo basis=30">
-            <img src="../../assets/logo.png" alt="" srcset="" />
-            Amartya Architects
-          </a>
-        </div>
-        <div>
-          <ul className="flex flex-row gap-10 flex-wrap">
-            <li >
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-               <Link to="/about">About</Link>
-            </li>
-            <li>
-               <Link to="/project">Projects</Link>
-            </li>
-            <li>
-              <Link to="/contact">Contact Us</Link>
-            </li>
+    <nav className="bg-black text-white p-6">
+
+      <div className="flex justify-between items-center">
+
+        <Link to="/" className="text-2xl">
+          Amartya Architects
+        </Link>
+
+        {/* Desktop Menu */}
+        <ul className="hidden md:flex gap-10">
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/project">Projects</Link></li>
+          <li><Link to="/contact">Contact</Link></li>
+        </ul>
+
+        {/* Mobile Button */}
+        <button
+          className="md:hidden text-3xl"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
+
+      </div>
+
+      {/* Mobile Menu */}
+      {
+        menuOpen && (
+          <ul className="flex flex-col gap-4 mt-6 md:hidden">
+
+            <li><Link to="/">Home</Link></li>
+            <li><Link to="/about">About</Link></li>
+            <li><Link to="/project">Projects</Link></li>
+            <li><Link to="/contact">Contact</Link></li>
+
           </ul>
-        </div>
-      </nav>
-    </>
+        )
+      }
+
+    </nav>
   );
 }
 
