@@ -13,10 +13,10 @@ function App() {
   const [count, setCount] = useState(0);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen  flex flex-col">
       <BrowserRouter>
         <Navbar />
-        <main className="flex-grow">
+        <main className="grow md:h-[500px]">
         <Routes>
          <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<About />} />
