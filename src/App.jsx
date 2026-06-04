@@ -16,12 +16,13 @@ function App() {
     <div className="min-h-screen  flex flex-col">
       <BrowserRouter>
         <Navbar />
-        <main className="grow md:h-[500px]">
+        <main className="grow h-[500px] ">
         <Routes>
          <Route path="/" element={<Homepage />} />
           <Route path="/about" element={<About />} />
           <Route path="/project" element={<Project />} />
           <Route path="/contact" element={<Contact />} />
+         
         </Routes>
         </main>
         <Footer />
