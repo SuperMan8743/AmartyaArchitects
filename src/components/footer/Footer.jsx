@@ -15,7 +15,7 @@ function Footer() {
   bg-[url('/footer.jpg')] flex
     flex-col
     justify-center
-    items-center"
+    items-center z-50"
     >
       <ul className="text-center text-white py-auto bold">
         <li className="text-2xl text-center">Don't Wait </li>

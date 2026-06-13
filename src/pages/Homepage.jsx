@@ -1,8 +1,10 @@
-import React from "react";
+import React from 'react'
 import { Link } from "react-router-dom";
+
 function Homepage() {
   return (
-    <div className="my-4 lg:w-[80%] m-auto">
+   <>
+   <div className="my-4 lg:w-[80%] m-auto border shadow-2xl p-1">
       <h1 className="text-4xl font-semibold">
         Designing Timeless Spaces, Creating Lasting Impressions
       </h1>
@@ -25,7 +27,8 @@ function Homepage() {
       <Link to="/contact" className="font-semibold underline" >Schedule a Consultation</Link>
      </div>
     </div>
-  );
+   </>
+  )
 }
 
-export default Homepage;
+export default Homepage
