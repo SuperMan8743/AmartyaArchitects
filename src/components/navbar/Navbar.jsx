@@ -11,7 +11,7 @@ function Navbar() {
       <nav className="fixed top-0 left-0 w-full text-white p-4 z-[9999]">
         <div className="flex justify-between items-center ">
           <Link to="/" className="text-2xl">
-          <img src="" alt="" />
+          {/* <img src="**" alt="" /> */}
             Amartya Architects
           </Link>
 
