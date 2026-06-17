@@ -1,88 +1,114 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-
+import React, { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import heroImage2 from "/2.png";
+import { useGSAP } from "@gsap/react";
+import { useLocation } from "react-router-dom";
+import heroImage1 from "/1.png";
+import heroImage2 from "/2.jpg";
 import heroImage3 from "/3.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Homepage() {
-  useEffect(() => {
-    gsap
-      .timeline({
+ 
+  const hero = useRef();
+const location = useLocation();
+  useGSAP(
+    
+    () => {
+      
+ const tl = gsap.timeline({
         scrollTrigger: {
-          trigger: ".hero",
+          trigger: hero.current,
           start: "top top",
-          end: "+=3000",
+          end: "+=7000",
           scrub: true,
           pin: true,
+          pinSpacing: true,
         },
-      })
-      .to(".hero-image", {
-        scale: 5,
-        transformOrigin: "40% 75%",
-      })
-      .to(".hero-image", {
-        opacity: 0,
-      })
-      // .to(".inside-image", {
-      //   opacity: 1,
-      // })
-      .to(
-        ".inside-image",
-        {
-          scale: 1.5,
-          duration: 2,
-        },
-        "<",
-      );
+      });
 
-    ScrollTrigger.refresh();
-  }, []);
+      tl.to(".title", {
+        opacity: 1,
+        y: -30,
+      })
+        .to(".subtitle", {
+          opacity: 1,
+          y: -20,
+        })
+        .to(".hero-image", {
+          scale: 5,
+          transformOrigin: "40% 75%",
+        })
+        .to(".hero-image", {
+          opacity: 0,
+        })
+        .to(
+          ".living-image",
+          {
+            opacity: 1,
+          },
+          "<",
+        )
+        .to(".living-image", {
+          scale: 1.5,
+          transformOrigin: "50% 75%",
+        })
+        .to(".living-image", {
+          opacity: 0,
+        })
+        .to(
+          ".bedroom-image",
+          {
+            opacity: 1,
+          },
+          "<",
+        )
+        .to(".bedroom-image", {
+          scale: 1.4,
+          transformOrigin: "50% 70%",
+        });
+        requestAnimationFrame(() => {
+  ScrollTrigger.refresh();
+})
+    },
+    { scope: hero, dependencies:[location.pathname],revertOnUpdate:true },
+  
+  );
+
   return (
     <>
-      {/* exterior  */}
-      <section className="hero h-screen  overflow-hidden">
+      <section ref={hero} className="hero relative h-screen overflow-hidden">
         <img
-          className="hero-image w-full  h-full  object-cover"
+          src={heroImage1}
+          alt=""
+          className="hero-image absolute inset-0 w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-10">
+          <h1 className="title text-white text-7xl font-bold opacity-0">
+            Modern Villa
+          </h1>
+
+          <p className="subtitle text-white text-xl mt-4 opacity-0">
+            Where Architecture Meets Luxury
+          </p>
+        </div>
+
+        <img
           src={heroImage2}
           alt=""
+          className="living-image absolute inset-0 w-full h-full object-cover opacity-0"
         />
-        {/* Interior  */}
+
         <img
           src={heroImage3}
           alt=""
-          className="inside-image absolute inset-0  h-full object-cover opacity-0 "
+          className="bedrooms-image absolute inset-0 w-full h-full object-cover opacity-0"
         />
       </section>
 
-      <div className="h-[200vh]"></div>
-
-      {/* <div className="my-4 lg:w-[80%] m-auto border shadow-2xl p-1">
-      <h1 className="text-4xl font-semibold">
-        Designing Timeless Spaces, Creating Lasting Impressions
-      </h1>
-      <br />
-      <p className="text[20px]">
-        At Amartya Architects, we transform ideas into exceptional
-        architectural, interior, and landscape experiences. Based in Delhi, we
-        specialize in creating thoughtfully designed residential, commercial,
-        hospitality, and institutional spaces that seamlessly blend
-        functionality, aesthetics, and sustainability.
-        <br />
-        From concept development to project execution, our team delivers
-        innovative design solutions tailored to your vision, lifestyle, and
-        business goals. Your Dream Space Starts Here.
-      </p>
-      <h2 className="text-2xl font-semibold py-2">Your Dream Space Starts Here.</h2>
-     <div className="flex flex-col my-4">
-      
-       <Link to="/project" className="font-semibold underline">Explore Our Projects</Link>
-      <Link to="/contact" className="font-semibold underline" >Schedule a Consultation</Link>
-     </div>
-    </div> */}
+      <div className="h-[200vh]" />
     </>
   );
 }
