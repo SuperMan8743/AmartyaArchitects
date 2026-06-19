@@ -29,8 +29,10 @@ function App() {
   }
   return (
     <div className="min-h-screen  flex flex-col">
+
       <BrowserRouter>
         {/* <ScrollToTop /> */}
+
         <Navbar className="z-50" />
         <main className="grow ">
           <Routes>
@@ -43,7 +45,7 @@ function App() {
           </Routes>
         </main>
         {/* <AnimatedNavar/> */}
-        <Footer className="z-50" />
+        {/* <Footer className="z-50" /> */}
       </BrowserRouter>
     </div>
   );
