@@ -28,7 +28,7 @@ function App() {
     return null;
   }
   return (
-    <div className="min-h-screen  flex flex-col">
+    <div className="min-h-screen text-white bg-[#0c141d] flex flex-col">
 
       <BrowserRouter>
         {/* <ScrollToTop /> */}
