@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 function Footer() {
-
   const backToTop = () => {
     window.scrollTo({
       top: 0,
@@ -22,20 +21,28 @@ function Footer() {
         <li className="text-5xl">Start Buidling Today</li>
       </ul>
       <nav className="flex flex-row justify-center">
-        <section >
+        <section>
           <ul className="flex flex-row gap-4 mt-6  text-white">
-
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/about">About</Link></li>
-            <li><Link to="/project">Projects</Link></li>
-            <li><Link to="/contact">Contact</Link></li>
-
+            <li>
+              <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/about">About</Link>
+            </li>
+            <li>
+              <Link to="/project">Projects</Link>
+            </li>
+            <li>
+              <Link to="/contact">Contact</Link>
+            </li>
           </ul>
-          
         </section>
         <section></section>
       </nav>
-      <button onClick={backToTop} className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800">
+      <button
+        onClick={backToTop}
+        className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800"
+      >
         Back To Top
       </button>
     </footer>

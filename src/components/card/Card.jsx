@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = () => {
+const Card = ({name,profile}) => {
   return (
     <>
       <div className="w-[240px] rounded-3xl bg-gradient-to-br from-pink-400 via-orange-300 to-yellow-300 p-1">
@@ -17,11 +17,11 @@ const Card = () => {
 
     <div className="text-center mt-4 capitalize">
       <h3 className="text-white text-xl font-bold">
-        devashish
+        {name}
       </h3>
 
       <p className="text-gray-400 text-sm capitalize">
-        social Mediea Executive
+       {profile}
       </p>
     </div>
 

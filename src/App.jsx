@@ -15,6 +15,8 @@ import Contact from "./pages/Contactpage";
 // import AnimatedSections from './pages/AnimatedSections'
 import AnimatedNavar from "./components/navbar/AnimatedNavar";
 import CostCalculator from "./pages/CostCalculator";
+import ServicePage from "./pages/ServicePage";
+import VrPage from "./pages/VrPage";
 function App() {
   const [count, setCount] = useState(0);
   
@@ -41,7 +43,8 @@ function App() {
             <Route path="/project" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/costCalculator" element={<CostCalculator />} />
-            {/* <Route path="/AnimatedSections" element={<AnimatedSections />} /> */}
+            <Route path="/service" element={<ServicePage />} />
+            <Route path="/vr" element={<VrPage />} />
           </Routes>
         </main>
         {/* <AnimatedNavar/> */}

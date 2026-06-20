@@ -9,7 +9,7 @@ function Navbar() {
 
   return (
     <nav
-       className={`fixed top-0 left-0 w-full p-4 z-[9999] transition-all duration-300 ${
+       className={`fixed top-0 left-0 w-full p-4 z-9999 transition-all duration-300 ${
     isHome ? "text-white" : "text-black bg-white shadow-md"
   }`}
     >
@@ -28,11 +28,18 @@ function Navbar() {
           <li>
             <Link to="/project">Projects</Link>
           </li>
-          <li>
-            <Link to="/contact">Services</Link>
+           <li>
+            <Link to="/costCalculator">Cost Calculator</Link>
           </li>
           <li>
-            <Link to="/costCalculator">Cost Calculator</Link>
+            <Link to="/service">Services</Link>
+          </li>
+          <li>
+            <Link to="/vr">VR</Link>
+            
+          </li>
+          <li>
+            <Link to="/contact">Contact Us</Link>
           </li>
         </ul>
 
