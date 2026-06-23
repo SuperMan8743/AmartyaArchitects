@@ -14,32 +14,32 @@ function Navbar() {
   }`}
     >
       <div className="flex justify-between items-center">
-        <Link to="/" className="text-2xl">
+        <Link to="/" className="text-2xl nav-link">
           Amartya Architects
         </Link>
 
         <ul className="hidden md:flex gap-10">
           <li>
-            <Link to="/">Home</Link>
+            <Link className="nav-link" to="/">Home</Link>
           </li>
           <li>
-            <Link to="/about">The Studio</Link>
+            <Link className="nav-link" to="/about">The Studio</Link>
           </li>
           <li>
-            <Link to="/project">Projects</Link>
+            <Link className="nav-link" to="/project">Projects</Link>
           </li>
            <li>
-            <Link to="/costCalculator">Cost Calculator</Link>
+            <Link className="nav-link" to="/costCalculator">Cost Calculator</Link>
           </li>
           <li>
-            <Link to="/service">Services</Link>
+            <Link className="nav-link" to="/service">Services</Link>
           </li>
           <li>
-            <Link to="/vr">VR</Link>
+            <Link className="nav-link" to="/vr">VR</Link>
             
           </li>
           <li>
-            <Link to="/contact">Contact Us</Link>
+            <Link className="nav-link" to="/contact">Contact Us</Link>
           </li>
         </ul>
 

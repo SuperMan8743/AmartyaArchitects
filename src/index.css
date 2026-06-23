@@ -1,1 +1,17 @@
 @import "tailwindcss";
+@layer components {
+  .nav-link {
+    @apply transition-all duration-300 hover:text-orange-400 hover:tracking-wider;
+  }
+
+  .icon-hover {
+    @apply transition-all duration-300 hover:text-orange-400 hover:scale-125;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 hover:-translate-y-3 hover:scale-105;
+  }
+  .text-hover {
+    @apply transition-all duration-300 hover:text-orange-400 hover:tracking-wider;
+  }
+}

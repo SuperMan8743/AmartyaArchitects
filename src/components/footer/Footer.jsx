@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
+import SocialIcons from "../socialMedia/SocialIcons";
+// icons
+// import { FaInstagram, FaYoutube,FaPinterest } from "react-icons/fa";
 function Footer() {
   const backToTop = () => {
     window.scrollTo({
@@ -9,42 +11,96 @@ function Footer() {
     });
   };
   return (
-    <footer
-      className=" min-h-[400px] bg-fill bg-center bg-no-repeat
-  bg-[url('/footer.jpg')] flex
-    flex-col
-    justify-center
-    items-center z-50"
-    >
-      <ul className="text-center text-white py-auto bold">
-        <li className="text-2xl text-center">Don't Wait </li>
-        <li className="text-5xl">Start Buidling Today</li>
-      </ul>
-      <nav className="flex flex-row justify-center">
+    <footer className="border-t inset-shadow-2xs ">
+      <div className="flex justify-around ">
+        {/* Quick Links */}
         <section>
-          <ul className="flex flex-row gap-4 mt-6  text-white">
+          <ul >
+            <h1 className="text-4xl my-4 text-hover">Quick Links</h1>
+
             <li>
-              <Link to="/">Home</Link>
+              <Link className="text-hover" to="/" >Home</Link>
             </li>
             <li>
-              <Link to="/about">About</Link>
+              <Link className="text-hover" to="/about">The Studio</Link>
             </li>
             <li>
-              <Link to="/project">Projects</Link>
+              <Link className="text-hover" to="/project" >Projects</Link>
             </li>
             <li>
-              <Link to="/contact">Contact</Link>
+              <Link className="text-hover" to="/costCalculator">Cost Calculator</Link>
+            </li>
+            <li>
+              <Link className="text-hover"  to="/service">Services</Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/vr">VR</Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/contact">Contact Us</Link>
             </li>
           </ul>
         </section>
-        <section></section>
-      </nav>
-      <button
-        onClick={backToTop}
-        className="px-4 py-2 bg-black text-white rounded-md hover:bg-gray-800"
-      >
-        Back To Top
-      </button>
+        {/* Important Links */}
+        <section>
+          <ul>
+            <h1 className="text-4xl my-4">Important Links</h1>
+
+            <li>
+              <Link className="text-hover"  to="/" >Privacy Policy </Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/about">Terms & Conditions</Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/project">Career</Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/costCalculator">Cost Calculator</Link>
+            </li>
+            <div className="flex gap-5 my-2">
+              <SocialIcons
+                name="instagram"
+                href="https://instagram.com/amartyaarchitects"
+              />
+
+              <SocialIcons
+                name="pinterest"
+                href="https://in.pinterest.com/amartyaarchitects/"
+              />
+
+              <SocialIcons
+                name="youtube"
+                href="https://youtube.com/@amartyaarchitects"
+              />
+            </div>
+          </ul>
+        </section>
+        {/* Reach Us */}
+        <section>
+          <ul>
+            <h1 className="text-4xl my-4 text-hover">Reach Us</h1>
+
+            <li>
+              <Link className="text-hover" to="/"> </Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/about">Terms & Conditions</Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/project">Career</Link>
+            </li>
+            <li>
+              <Link className="text-hover" to="/costCalculator">Cost Calculator</Link>
+            </li>
+          </ul>
+        </section>
+      </div>
+      <div>
+        <p className="text-gray-500 text-sm">
+          © 2026 Amartya Architects. All Rights Reserved.
+        </p>
+      </div>
     </footer>
   );
 }
