@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <nav
        className={`fixed top-0 left-0 w-full p-4 z-9999 transition-all duration-300 ${
-    isHome ? "text-white" : "text-black bg-white shadow-md"
+    isHome ? "text-white " : " bg-black/5 backdrop-blur-xs shadow-md text"
   }`}
     >
       <div className="flex justify-between items-center">
