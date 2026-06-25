@@ -1,23 +1,47 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-// Images
-import heroImage1 from "/1.jpg";
-import heroImage2 from "/2.jpg";
-import heroImage3 from "/3.jpg";
+import { getHomePage } from "../api/api";
 
 gsap.registerPlugin(ScrollTrigger);
 
 function Homepage() {
-  const hero = useRef();
-  const location = useLocation();
+  const hero = useRef(null);
   const navigate = useNavigate();
 
+  const [homeData, setHomeData] = useState(null);
+
+  // -------------------------
+  // Load Home Data
+  // -------------------------
+  useEffect(() => {
+    async function loadHomePage() {
+      const data = await getHomePage();
+
+      console.log("API DATA =>", data);
+
+      // preload images
+      Object.values(data.heroImages).forEach((src) => {
+        const img = new Image();
+        img.src = src;
+      });
+
+      setHomeData(data);
+    }
+
+    loadHomePage();
+  }, []);
+
+  // -------------------------
+  // GSAP
+  // -------------------------
   useGSAP(
     () => {
+      if (!homeData) return;
+
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: hero.current,
@@ -29,7 +53,6 @@ function Homepage() {
         },
       });
 
-      // Hero Text
       tl.to(".title", {
         opacity: 1,
         y: -30,
@@ -40,7 +63,6 @@ function Homepage() {
           y: -20,
         })
 
-        // Exterior Zoom
         .to(".hero-image", {
           scale: 5,
           transformOrigin: "40% 75%",
@@ -50,13 +72,12 @@ function Homepage() {
           opacity: 0,
         })
 
-        // Living Room
         .to(
           ".living-image",
           {
             opacity: 1,
           },
-          "<",
+          "<"
         )
 
         .to(".living-image", {
@@ -68,13 +89,12 @@ function Homepage() {
           opacity: 0,
         })
 
-        // Bedroom
         .to(
           ".bedroom-image",
           {
             opacity: 1,
           },
-          "<",
+          "<"
         )
 
         .to(".bedroom-image", {
@@ -82,18 +102,16 @@ function Homepage() {
           transformOrigin: "50% 70%",
         })
 
-        // Bedroom Fade Out
         .to(".bedroom-image", {
           opacity: 0,
         })
 
-        // Contact Screen
         .to(
           ".contact-screen",
           {
             opacity: 1,
           },
-          "<",
+          "<"
         )
 
         .fromTo(
@@ -105,7 +123,7 @@ function Homepage() {
           {
             y: 0,
             opacity: 1,
-          },
+          }
         )
 
         .fromTo(
@@ -117,77 +135,92 @@ function Homepage() {
           {
             y: 0,
             opacity: 1,
-          },
+          }
         );
 
-      requestAnimationFrame(() => {
-        ScrollTrigger.refresh();
-      });
+      ScrollTrigger.refresh();
+
+      return () => {
+        tl.kill();
+        ScrollTrigger.getAll().forEach((st) => st.kill());
+      };
     },
     {
       scope: hero,
-      dependencies: [location.pathname],
+      dependencies: [homeData],
       revertOnUpdate: true,
-    },
+    }
   );
 
+  // -------------------------
+  // Loading
+  // -------------------------
+
+  if (!homeData) {
+    return (
+      <div className="h-screen flex items-center justify-center text-2xl">
+        Loading...
+      </div>
+    );
+  }
+
+  // -------------------------
+  // UI
+  // -------------------------
+
   return (
-    <>
-      <section ref={hero} className="relative h-screen overflow-hidden">
-        {/* Exterior */}
-        <img
-          src={heroImage1}
-          alt=""
-          className="hero-image absolute inset-0 w-full h-full object-cover"
-        />
+    <section ref={hero} className="relative h-screen overflow-hidden">
 
-        {/* Hero Text */}
-        <div className="absolute inset-0 flex flex-col justify-center items-center z-10 text-center">
-          <h1 className="title text-white text-5xl lg:5xl font-bold opacity-0">
-            Modern Villa
-          </h1>
+      {/* Hero */}
+      <img
+        src={homeData.heroImages.img1}
+        alt=""
+        className="hero-image absolute inset-0 w-full h-full object-cover"
+      />
 
-          <p className="subtitle text-white text-xl mt-4 opacity-0">
-            Where Architecture Meets Luxury
-          </p>
-        </div>
+      {/* Text */}
+      <div className="absolute inset-0 flex flex-col justify-center items-center z-10 text-center">
+        <h1 className="title text-white text-5xl lg:text-7xl font-bold opacity-0">
+          {homeData.heroTitle}
+        </h1>
 
-        {/* Living Room */}
-        <img
-          src={heroImage2}
-          alt=""
-          className="living-image absolute inset-0 w-full h-full object-cover opacity-0"
-        />
+        <p className="subtitle text-white text-xl mt-4 opacity-0">
+          {homeData.heroSubtitle}
+        </p>
+      </div>
 
-        {/* Bedroom */}
-        <img
-          src={heroImage3}
-          alt=""
-          className="bedroom-image absolute inset-0 w-full h-full object-cover opacity-0"
-        />
+      {/* Living */}
+      <img
+        src={homeData.heroImages.img2}
+        alt=""
+        className="living-image absolute inset-0 w-full h-full object-cover opacity-0"
+      />
 
-        {/* Final Contact Screen */}
-        <div className="contact-screen absolute inset-0 bg-black flex flex-col justify-center items-center text-white opacity-0 z-20">
-          <h2 className="contact-title text-5xl lg:text-7xl font-bold opacity-0 text-center md:text-2xl">
-            AMARTYA ARCHITECTS
-          </h2>
+      {/* Bedroom */}
+      <img
+        src={homeData.heroImages.img3}
+        alt=""
+        className="bedroom-image absolute inset-0 w-full h-full object-cover opacity-0"
+      />
 
-          <p className="mt-6 text-2xl text-center">
-            Crafting Spaces, Creating Experiences
-          </p>
+      {/* Contact */}
+      <div className="contact-screen absolute inset-0 bg-black flex flex-col justify-center items-center text-white opacity-0 z-20">
+        <h2 className="contact-title text-6xl font-bold opacity-0 uppercase">
+          {homeData.companyName}
+        </h2>
 
-          <button
-            onClick={() => navigate("/contact")}
-            className="contact-btn mt-10 border border-white px-8 py-4 opacity-0 hover:bg-white hover:text-black transition-all duration-300"
-          >
-            Schedule Consultation
-          </button>
-        </div>
-      </section>
+        <p className="mt-6 text-2xl capitalize">
+          {homeData.companyTagLine}
+        </p>
 
-      {/* <div className="h-[200vh]" /> */}
-      {/* <div className="h-screen bg-black"></div> */}
-    </>
+        <button
+          onClick={() => navigate("/contact")}
+          className="contact-btn mt-10 border border-white px-8 py-4 opacity-0 hover:bg-white hover:text-black transition"
+        >
+          Schedule Consultation
+        </button>
+      </div>
+    </section>
   );
 }
 
