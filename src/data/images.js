@@ -6,7 +6,8 @@ const images = {
   },
   aboutPageImages:{
     img:"/footer.jpg"
-  }
+  },
+
 };
 
 export default images;

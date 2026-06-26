@@ -1,5 +1,5 @@
 import pages from "../data/pages";
-
+import team from "../data/team";
 
 export async function getHomePage() {
   return pages.home;

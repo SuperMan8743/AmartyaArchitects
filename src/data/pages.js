@@ -10,10 +10,11 @@ const pages = {
 
   about: {
     bannerImage: images.aboutPageImages,
-    bannerImageText: "",
+    bannerText:" Designing Spaces That Inspire",
     aboutText:
       "At Amartya Architects, we believe architecture is more than designing buildings— it's about creating experiences that enrich everyday life. With a passion for innovative design, functional planning, and attention to detail, we transform ideas into timeless spaces that reflect our clients' vision and lifestyle. From luxury residences and modern villas to commercial and interior projects, every design is thoughtfully crafted to balance aesthetics, comfort, and practicality.",
   },
+  
 
   contact: {
     title: "Let's Build Something Amazing",

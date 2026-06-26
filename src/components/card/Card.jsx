@@ -1,6 +1,6 @@
 import React from "react";
 
-const Card = ({name,profile}) => {
+const Card = ({name,designation,image="/team.jpg"}) => {
   return (
     <>
       <div className="w-[240px] rounded-3xl bg-gradient-to-br from-pink-400 via-orange-300 to-yellow-300 p-1">
@@ -8,7 +8,7 @@ const Card = ({name,profile}) => {
     
     <div className="rounded-2xl overflow-hidden">
       <img
-        src="/team.jpg"
+        src={image}
         // src="/photo.png"
         alt=""
         className="w-full h-[260px] object-cover"
@@ -21,7 +21,7 @@ const Card = ({name,profile}) => {
       </h3>
 
       <p className="text-gray-400 text-sm capitalize">
-       {profile}
+       {designation}
       </p>
     </div>
 

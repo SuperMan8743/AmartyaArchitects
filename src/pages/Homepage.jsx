@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useNavigate } from "react-router-dom";
 
-import { getHomePage } from "../api/api";
+import { getHomePage,getTeam } from "../api/api";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +21,7 @@ function Homepage() {
     async function loadHomePage() {
       const data = await getHomePage();
 
-      console.log("API DATA =>", data);
+      // console.log("API DATA =>", data);
 
       // preload images
       Object.values(data.heroImages).forEach((src) => {
@@ -31,6 +31,9 @@ function Homepage() {
 
       setHomeData(data);
     }
+
+
+   
 
     loadHomePage();
   }, []);
