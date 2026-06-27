@@ -16,9 +16,51 @@ const projects = [
 
   {
     id: 2,
-    slug: "open-living",
-    title: "Open Living",
-    category: "Luxury Residence",
+    slug: "Millan-Apartment",
+    title: "Millan Apartment",
+    category: "Residencace interior",
+    hero: "/2.jpg",
+    gallery: [
+      "/2.jpg",
+      "/3.jpg",
+      "/1.jpg",
+    ],
+    description:
+      "Contemporary architecture blending nature and luxury."
+  },
+  {
+    id: 3,
+    slug: "Millan-Apartment3",
+    title: "Millan Apartment",
+    category: "Residencace interior",
+    hero: "/2.jpg",
+    gallery: [
+      "/2.jpg",
+      "/3.jpg",
+      "/1.jpg",
+    ],
+    description:
+      "Contemporary architecture blending nature and luxury."
+  },
+  {
+    id: 4,
+    slug: "Millan-Apartment4",
+    title: "Millan Apartment",
+    category: "Residencace interior",
+    hero: "/2.jpg",
+    gallery: [
+      "/2.jpg",
+      "/3.jpg",
+      "/1.jpg",
+    ],
+    description:
+      "Contemporary architecture blending nature and luxury."
+  },
+  {
+    id: 5,
+    slug: "Millan-Apartment5",
+    title: "Millan Apartment",
+    category: "Residencace interior",
     hero: "/2.jpg",
     gallery: [
       "/2.jpg",

@@ -4,9 +4,9 @@ const Card = ({name,designation,image="/team.jpg"}) => {
   return (
     <>
       <div className="w-[240px] rounded-3xl bg-gradient-to-br from-pink-400 via-orange-300 to-yellow-300 p-1">
-  <div className="bg-[#11111A] rounded-[22px] p-4">
+  <div className="bg-[#11111A] rounded-[22px] p-4 icon-hover">
     
-    <div className="rounded-2xl overflow-hidden">
+    <div className="rounded-2xl overflow-hidden ">
       <img
         src={image}
         // src="/photo.png"

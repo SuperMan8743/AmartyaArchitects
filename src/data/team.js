@@ -1,7 +1,7 @@
 const team = {
   heading: "Our Team",
   subHeading: "Meet the team that makes the magic happen",
-  member : [
+  members : [
   {
     id: 1,
     name: "Sahil Saini ",

@@ -3,23 +3,23 @@ import Card from "../components/card/Card";
 import { getAboutPage, getTeam } from "../api/api";
 function Aboutpage() {
   const [showMore, setShowMore] = useState(false);
+  const [aboutText, setAboutText] = useState(null);
 
   const [aboutData, setAboutData] = useState(null);
   const [teamData, setTeamData] = useState(null);
-  const [aboutText, setaboutText] = useState(null);
   useEffect(() => {
     async function loadAboutPage() {
       const data = await getAboutPage();
 
-      console.log("API DATA aboutpage =>", data);
+      // console.log("API DATA aboutpage =>", data);
+      setAboutText(data.aboutText);
 
       setAboutData(data);
-      // setShowMore(data.aboutText)
-      setaboutText(data.aboutText);
     }
     async function loadTeam() {
       const teamData = await getTeam();
-      console.log("API TEAM =>", teamData);
+      // console.log("API TEAM =>", teamData);
+      console.log(teamData.heading);
 
       setTeamData(teamData);
     }
@@ -59,7 +59,7 @@ function Aboutpage() {
           <section className="w-full m-auto md:w-full">
             <p className="text-lg leading-relaxed">
               {showMore ? aboutText : aboutText.slice(0, 200) + "..."}
-            </p>{" "}
+            </p>
             <button
               onClick={() => setShowMore(!showMore)}
               className="mt-3 text-blue-600 font-semibold"
@@ -74,7 +74,7 @@ function Aboutpage() {
           <h5 className="text-2xl capitalize mt-2">{teamData.subHeading}</h5>
         </section>
         <div className=" flex my-20  justify-center align-center flex-wrap gap-3">
-          {teamData.member.map((item) => (
+          {teamData.members.map((item) => (
             <Card
               key={item.id}
               name={item.name}
