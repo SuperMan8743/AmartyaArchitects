@@ -1,6 +1,8 @@
 import pages from "../data/pages";
+import projects from "../data/projects";
 import team from "../data/team";
-
+import calculator from "../data/calculator";
+import services from "../data/services";
 export async function getHomePage() {
   return pages.home;
 }
@@ -11,4 +13,23 @@ export async function getAboutPage() {
 
 export async function getTeam() {
   return team;
+}
+export async function getProjects() {
+    return projects;
+}
+
+export async function getProject(slug){
+
+    return projects.find(
+        project=>project.slug===slug
+    );
+
+}
+
+export async function getCalculatorData() {
+  return calculator;
+}
+
+export async function getServicesPage() {
+  return services;
 }

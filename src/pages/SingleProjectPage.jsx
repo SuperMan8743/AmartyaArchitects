@@ -1,88 +1,96 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import projects from "../data/projects";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { getProject } from "../api/api";
 
-gsap.registerPlugin(ScrollTrigger);
-const SingleProjectPage = () => {
+function SingleProjectPage() {
   const { slug } = useParams();
 
-  const project = projects.find((item) => item.slug === slug);
+const [project, setProject] = useState(null);
+
+useEffect(() => {
+  async function loadProject() {
+    const data = await getProject(slug);
+    setProject(data);
+  }
+
+  loadProject();
+}, [slug]);
 
   if (!project) {
-    return <h1>Project Not Found</h1>;
-  }
-  useGSAP(() => {
-    gsap.from(".project-title", {
-      y: 100,
-      opacity: 0,
-      duration: 1.5,
-    });
-
-    gsap.from(".gallery-img", {
-      y: 80,
-      opacity: 0,
-      stagger: 0.15,
-
-      scrollTrigger: {
-        trigger: ".gallery",
-        start: "top 80%",
-      },
-    });
-  });
-  return
-
-  <div>
-    <section className="relative h-screen">
-      <img src={project.hero} alt="" className="w-full h-full object-cover" />
-
-      <div
-        className="
-          absolute
-          inset-0
-          bg-black/40
-          flex
-          items-center
-          justify-center
-        "
-      >
-        <h1 className="text-white text-8xl font-bold">{project.title}</h1>
+    return (
+      <div className="h-screen flex items-center justify-center text-2xl">
+        Loading...
       </div>
-    </section>
+    );
+  }
 
-    <section className="max-w-6xl mx-auto py-20">
-      <h2 className="text-5xl font-bold mb-8">Project Overview</h2>
+  return (
+    <>
+      {/* Hero */}
 
-      <p className="text-xl text-gray-300">{project.description}</p>
-    </section>
+      <section className="relative h-screen">
 
-    <section
-      className="
+        <img
+          src={project.hero}
+          alt={project.title}
+          className="w-full h-full object-cover"
+        />
+
+        <div className="absolute inset-0 bg-black/40 flex justify-center items-center">
+
+          <h1 className="text-6xl lg:text-8xl font-bold text-white">
+            {project.title}
+          </h1>
+
+        </div>
+
+      </section>
+
+      {/* Overview */}
+
+      <section className="max-w-6xl mx-auto py-24 px-6">
+
+        <h2 className="text-5xl font-bold mb-8">
+          Project Overview
+        </h2>
+
+        <p className="text-xl leading-relaxed text-gray-300">
+          {project.description}
+        </p>
+
+      </section>
+
+      {/* Gallery */}
+
+      <section
+        className="
+        gallery
         max-w-7xl
         mx-auto
         grid
         md:grid-cols-3
         gap-6
-        pb-20
-        "
-    >
-      {project.gallery.map((img, index) => (
-        <img
-          key={index}
-          src={img}
-          alt=""
-          className="
+        pb-24
+        px-6
+      "
+      >
+        {project.gallery.map((img, index) => (
+          <img
+            key={index}
+            src={img}
+            alt=""
+            className="
+            gallery-img
             w-full
             h-[350px]
-            object-cover
             rounded-2xl
-            "
-        />
-      ))}
-    </section>
-  </div>;
-};
+            object-cover
+          "
+          />
+        ))}
+      </section>
+    </>
+  );
+}
 
 export default SingleProjectPage;
