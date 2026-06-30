@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import Card from "../components/card/Card";
+import { Card, CardHeader, CardFooter, CardButton } from "../components/Card";
 import { getAboutPage, getTeam } from "../api/api";
 function Aboutpage() {
   const [showMore, setShowMore] = useState(false);
@@ -19,7 +19,6 @@ function Aboutpage() {
     async function loadTeam() {
       const teamData = await getTeam();
       // console.log("API TEAM =>", teamData);
-      console.log(teamData.heading);
 
       setTeamData(teamData);
     }
@@ -73,19 +72,28 @@ function Aboutpage() {
           <h2 className="text-5xl">{teamData.heading} </h2>
           <h5 className="text-2xl capitalize mt-2">{teamData.subHeading}</h5>
         </section>
-        <div className=" flex my-20  justify-center align-center flex-wrap gap-3">
+
+        <div className="flex my-20 justify-center items-center flex-wrap gap-8">
           {teamData.members.map((item) => (
-            <Card
-              key={item.id}
-              name={item.name}
-              designation={item.designation}
-              image={item.image}
-            />
+            <Card className="w-60 rounded-3xl bg-gradient-to-br from-pink-400 via-orange-300 to-yellow-300 p-1">
+              <div className="bg-[#11111A] rounded-[22px] p-4">
+                <CardHeader
+                  image={item.image}
+                  alt={item.name}
+                  className="h-[260px] rounded-2xl"
+                />
+
+                <div className="text-center mt-4 capitalize">
+                  <h3 className="text-white text-xl font-bold">{item.name}</h3>
+
+                  <p className="text-gray-400 text-sm">{item.designation}</p>
+                </div>
+              </div>
+            </Card>
           ))}
         </div>
       </div>
     </>
   );
 }
-
 export default Aboutpage;

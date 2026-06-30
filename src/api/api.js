@@ -3,6 +3,7 @@ import projects from "../data/projects";
 import team from "../data/team";
 import calculator from "../data/calculator";
 import services from "../data/services";
+import vr from "../data/vr";
 export async function getHomePage() {
   return pages.home;
 }
@@ -32,4 +33,8 @@ export async function getCalculatorData() {
 
 export async function getServicesPage() {
   return services;
+}
+
+export async function getVrPage() {
+  return vr;
 }
