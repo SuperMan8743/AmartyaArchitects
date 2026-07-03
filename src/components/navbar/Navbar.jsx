@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 function Navbar() {
@@ -6,12 +6,14 @@ function Navbar() {
 
   const location = useLocation();
   const isHome = location.pathname === "/";
-
+useEffect(() => {
+  setMenuOpen(false);
+}, [location.pathname]);
   return (
     <nav
-       className={`fixed top-0 left-0 w-full p-4 z-9999 transition-all duration-300 ${
-    isHome ? "text-white " : " bg-black/5 backdrop-blur-xs shadow-md text"
-  }`}
+      className={`fixed top-0 left-0 w-full p-4 z-9999 transition-all duration-300 ${
+        isHome ? "text-white " : " bg-black/5 backdrop-blur-xs shadow-md text"
+      }`}
     >
       <div className="flex justify-between items-center">
         <Link to="/" className="text-2xl nav-link">
@@ -20,26 +22,39 @@ function Navbar() {
 
         <ul className="hidden md:flex gap-10">
           <li>
-            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/about">The Studio</Link>
+            <Link className="nav-link" to="/about">
+              The Studio
+            </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/project">Projects</Link>
-          </li>
-           <li>
-            <Link className="nav-link" to="/costCalculator">Cost Calculator</Link>
-          </li>
-          <li>
-            <Link className="nav-link" to="/service">Services</Link>
+            <Link className="nav-link" to="/project">
+              Projects
+            </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/vr">VR</Link>
-            
+            <Link className="nav-link" to="/costCalculator">
+              Cost Calculator
+            </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/contact">Contact Us</Link>
+            <Link className="nav-link" to="/service">
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/vr">
+              VR
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/contact">
+              Contact Us
+            </Link>
           </li>
         </ul>
 
@@ -50,7 +65,7 @@ function Navbar() {
           ☰
         </button>
       </div>
-
+{/* mobile view  */}
       {menuOpen && (
         <ul className="flex flex-col gap-4 mt-6 md:hidden">
           <li>
@@ -61,6 +76,21 @@ function Navbar() {
           </li>
           <li>
             <Link to="/project">Projects</Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/costCalculator">
+              Cost Calculator
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/service">
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" to="/vr">
+              VR
+            </Link>
           </li>
           <li>
             <Link to="/contact">Contact</Link>

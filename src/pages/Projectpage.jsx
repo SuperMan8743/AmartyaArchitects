@@ -32,7 +32,7 @@ function ProjectPage() {
   return (
     <section className="pt-32 pb-20 px-6 lg:px-16">
       <div className="max-w-7xl mx-auto mb-16">
-        <h1 className="text-6xl font-bold">Our Projects</h1>
+        <h1 className=" md:text-6xl text-3xl font-bold">Our Projects</h1>
 
         <p className="text-gray-500 mt-4 max-w-xl">
           Explore our residential, commercial and interior projects.

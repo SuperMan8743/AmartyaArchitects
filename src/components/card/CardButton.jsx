@@ -13,15 +13,15 @@ function CardButton({
         href={href}
         target={target}
         rel={target === "_blank" ? "noopener noreferrer" : ""}
-        className="
+        className={`
           inline-flex
           items-center
           gap-2
           font-semibold
-          text-black
+        ${className}
           hover:text-gray-600
           transition
-        "
+       `}
       >
         {children}
       </a>

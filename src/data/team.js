@@ -29,7 +29,7 @@ const team = {
   },
   {
     id: 5,
-    name: "Sanskar",
+    name: "Sanskar Tandon",
     designation: " Jr.Siter Supervisior ",
       image: "/photo.png",
 
@@ -57,7 +57,7 @@ const team = {
   },
   {
     id: 9,
-    name: "dikhsha",
+    name: "diksha",
     designation: "Intern",
      image: "/photo.png",
   },
@@ -67,12 +67,7 @@ const team = {
     designation: "Intern",
      image: "/photo.png",
   },
-  {
-    id: 11,
-    name: "Vanshika ",
-    designation: "Intern",
-     image: "/photo.png",
-  },
+  
   ]
 };
 

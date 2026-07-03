@@ -5,7 +5,7 @@ const projects = [
     slug: "tarun-enclave",
 
     title: "Tarun Enclave",
-
+    bannerImage: "/footer.jpg",
     category: "Residential",
 
     featured: true,
@@ -26,14 +26,7 @@ const projects = [
     description:
       "A luxury residential villa designed with modern aesthetics and functionality. The project focuses on natural lighting, spacious interiors and a seamless connection between indoor and outdoor spaces.",
 
-    gallery: [
-      "/1.jpg",
-      "/2.jpg",
-      "/3.jpg",
-      "/1.jpg",
-      "/2.jpg",
-      "/3.jpg",
-    ],
+    gallery: ["/1.jpg", "/2.jpg", "/3.jpg", "/1.jpg", "/2.jpg", "/3.jpg"],
   },
 
   {
@@ -42,12 +35,12 @@ const projects = [
     slug: "open-living",
 
     title: "Open Living",
-
+    bannerImage: "/footer.jpg",
     category: "Luxury Residence",
 
     featured: true,
 
-   height: 650,
+    height: 650,
 
     thumbnail: "/2.jpg",
 
@@ -63,12 +56,7 @@ const projects = [
     description:
       "Contemporary residence combining minimalist architecture with luxurious interiors.",
 
-    gallery: [
-      "/2.jpg",
-      "/3.jpg",
-      "/1.jpg",
-      "/2.jpg",
-    ],
+    gallery: ["/2.jpg", "/3.jpg", "/1.jpg", "/2.jpg"],
   },
 
   {
@@ -77,12 +65,12 @@ const projects = [
     slug: "sky-house",
 
     title: "Sky House",
-
+    bannerImage: "/footer.jpg",
     category: "Modern Villa",
 
     featured: false,
 
-   height: 650,
+    height: 650,
 
     thumbnail: "/3.jpg",
 
@@ -98,19 +86,14 @@ const projects = [
     description:
       "Modern architecture with panoramic views and premium interior detailing.",
 
-    gallery: [
-      "/3.jpg",
-      "/1.jpg",
-      "/2.jpg",
-      "/3.jpg",
-    ],
+    gallery: ["/3.jpg", "/1.jpg", "/2.jpg", "/3.jpg"],
   },
 
   {
     id: 4,
 
     slug: "green-retreat",
-
+    bannerImage: "/footer.jpg",
     title: "Green Retreat",
 
     category: "Farm House",
@@ -134,12 +117,7 @@ const projects = [
     description:
       "Luxury farmhouse designed around landscape and natural ventilation.",
 
-    gallery: [
-      "/1.jpg",
-      "/2.jpg",
-      "/3.jpg",
-      "/1.jpg",
-    ],
+    gallery: ["/1.jpg", "/2.jpg", "/3.jpg", "/1.jpg"],
   },
 
   {
@@ -148,12 +126,12 @@ const projects = [
     slug: "urban-office",
 
     title: "Urban Office",
-
+    bannerImage: "/footer.jpg",
     category: "Commercial",
 
     featured: false,
 
-  height: 650,
+    height: 650,
 
     thumbnail: "/2.jpg",
 
@@ -170,11 +148,7 @@ const projects = [
     description:
       "Modern commercial workspace emphasizing collaboration and productivity.",
 
-    gallery: [
-      "/2.jpg",
-      "/1.jpg",
-      "/3.jpg",
-    ],
+    gallery: ["/2.jpg", "/1.jpg", "/3.jpg"],
   },
 ];
 

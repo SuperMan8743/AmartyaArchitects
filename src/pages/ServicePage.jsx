@@ -4,13 +4,14 @@ import ServiceCard from "../components/serviceCard/ServiceCard";
 import ProcessCard from "../components/serviceCard/ProcessCard";
 import WhyChooseCard from "../components/serviceCard/WhyChooseCard";
 import { Link } from "react-router-dom";
+import PageHero from "../components/pagehero/PageHero"
+
 const ServicePage = () => {
   const [serviceData, setServiceData] = useState(null);
 
   useEffect(() => {
     async function loadServiceData() {
       const data = await getServicesPage();
-      console.log("Service API =>", data);
 
       setServiceData(data);
     }
@@ -30,23 +31,12 @@ const ServicePage = () => {
     <>
       {/* Hero Section */}
 
-      <section className="relative h-[80vh]">
-        <img
-          src={serviceData.hero.bannerImage}
-          alt={serviceData.hero.title}
-          className="w-full h-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-black/50 flex flex-col items-center justify-center px-6">
-          <h1 className="text-5xl md:text-7xl font-bold text-white text-center">
-            {serviceData.hero.title}
-          </h1>
-
-          <p className="text-lg md:text-xl text-gray-200 mt-6 max-w-3xl text-center leading-8">
-            {serviceData.hero.subTitle}
-          </p>
-        </div>
-      </section>
+      <PageHero
+        image={serviceData.hero.bannerImage}
+        title={serviceData.hero.title}
+        subTitle={serviceData.hero.subTitle}
+        className="h-[80vh]"
+      />
 
       {/* Introduction */}
 

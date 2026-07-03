@@ -38,3 +38,18 @@ export async function getServicesPage() {
 export async function getVrPage() {
   return vr;
 }
+
+export async function getContactPage() {
+  return pages.contact;
+}
+
+export async function getPrivacyPolicy() {
+  return pages.privacyPolicy;
+}
+
+export async function getCareerPage() {
+  return pages.career;
+}
+export async function getNotFoundPage() {
+  return pages.notFound;
+}

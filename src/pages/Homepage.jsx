@@ -208,11 +208,11 @@ function Homepage() {
 
       {/* Contact */}
       <div className="contact-screen absolute inset-0 bg-black flex flex-col justify-center items-center text-white opacity-0 z-20">
-        <h2 className="contact-title text-6xl font-bold opacity-0 uppercase">
+        <h2 className="contact-title text-6xl text-center font-bold opacity-0 uppercase">
           {homeData.companyName}
         </h2>
 
-        <p className="mt-6 text-2xl capitalize">
+        <p className="mt-6 text-2xl capitalize text-center">
           {homeData.companyTagLine}
         </p>
 

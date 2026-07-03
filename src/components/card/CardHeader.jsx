@@ -1,21 +1,22 @@
 import React from "react";
 
-function CardHeader({
-  image,
-  alt,
-  className = "",
-  children,
-}) {
+function CardHeader({ image, alt, className = "", children }) {
   return (
-    <div className={`relative w-full h-full overflow-hidden ${className}`}>
+    <div
+      className={`relative w-full aspect-[4/5] overflow-hidden rounded-2xl ${className}`}
+    >
       <img
         src={image}
         alt={alt}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
-
-      {children}
     </div>
+
+    //  <img
+    //   src={image}
+    //   alt={alt}
+    //   className=" object-cover rounded-2xl"
+    // />
   );
 }
 

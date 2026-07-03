@@ -33,24 +33,24 @@ function CostCalculator() {
   });
 
   const [result, setResult] = useState(null);
-const resetCalculator = () => {
-  setStep(1);
+  const resetCalculator = () => {
+    setStep(1);
 
-  setResult(null);
+    setResult(null);
 
-  setFormData({
-    category: "",
-    floors: [
-      {
-        id: 1,
-        name: "Ground Floor",
-        area: "",
-      },
-    ],
-    name: "",
-    phone: "",
-  });
-};
+    setFormData({
+      category: "",
+      floors: [
+        {
+          id: 1,
+          name: "Ground Floor",
+          area: "",
+        },
+      ],
+      name: "",
+      phone: "",
+    });
+  };
   useEffect(() => {
     async function loadCalculator() {
       const data = await getCalculatorData();
@@ -71,16 +71,16 @@ const resetCalculator = () => {
 
   return (
     <>
-      <section className="min-h-screen m-24 bg-[#0B1623]  px-4">
-       <div className="text-center mb-10">
-  <h1 className="text-5xl font-bold text-white">
-    {calculatorData.title}
-  </h1>
+      <section className="min-h-screen my-24 bg-[#0B1623]  px-4">
+        <div className="text-center mb-10">
+          <h1 className="text-5xl font-bold text-white">
+            {calculatorData.title}
+          </h1>
 
-  <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-    {calculatorData.description}
-  </p>
-</div>
+          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+            {calculatorData.description}
+          </p>
+        </div>
         <div className="max-w-xl mx-auto rounded-3xl bg-[#111827] border border-white/10 p-10 shadow-2xl">
           <ProgressBar step={step} />
 

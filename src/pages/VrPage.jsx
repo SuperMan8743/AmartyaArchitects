@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getVrPage } from "../api/api";
 import { Card, CardHeader, CardFooter, CardButton } from "../components/Card";
+import PageHero from "../components/pagehero/PageHero"
 
 const VrPage = () => {
   const [vrData, setVrData] = useState(null);
@@ -8,7 +9,6 @@ const VrPage = () => {
   useEffect(() => {
     async function loadVrPage() {
       const data = await getVrPage();
-      console.log("VR DATA =>", data);
 
       setVrData(data);
     }
@@ -28,23 +28,11 @@ const VrPage = () => {
     <>
       {/* Hero */}
 
-      <section className="relative h-[80vh]">
-        <img
-          src={vrData.hero.bannerImage}
-          alt={vrData.hero.title}
-          className="w-full h-full object-cover"
-        />
-
-        <div className="absolute inset-0 bg-black/60 flex flex-col items-center justify-center px-6">
-          <h1 className="text-5xl md:text-7xl font-bold text-white text-center">
-            {vrData.hero.title}
-          </h1>
-
-          <p className="mt-6 max-w-3xl text-center text-lg md:text-xl text-gray-200">
-            {vrData.hero.subTitle}
-          </p>
-        </div>
-      </section>
+    <PageHero
+  image={vrData.hero.bannerImage}
+  title={vrData.hero.title}
+  subTitle={vrData.hero.subTitle}
+/>
 
       {/* Introduction */}
 
@@ -96,7 +84,7 @@ const VrPage = () => {
                   <CardButton
                     href={tour.vrLink}
                     target="_blank"
-                    className="uppercase tracking-widest"
+                    className="uppercase tracking-widest text-white"
                   >
                     Explore VR →
                   </CardButton>

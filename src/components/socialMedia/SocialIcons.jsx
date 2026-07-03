@@ -4,18 +4,20 @@ import {
   FaLinkedin,
   FaYoutube,
   FaFacebook,
-  FaPhone,
   FaEnvelope,
   FaPinterest,
+  FaPhoneAlt,
+  FaMapMarkerAlt,
 } from "react-icons/fa";
 
 const icons = {
   instagram: FaInstagram,
   youtube: FaYoutube,
   facebook: FaFacebook,
-  pinterest:FaPinterest,
-  phone: FaPhone,
+  pinterest: FaPinterest,
+  phone: FaPhoneAlt,
   email: FaEnvelope,
+  address: FaMapMarkerAlt,
 };
 
 function SocialIcons({ name, href, size = 28 }) {
