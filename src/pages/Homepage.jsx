@@ -4,7 +4,8 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useNavigate } from "react-router-dom";
 
-import { getHomePage,getTeam } from "../api/api";
+import { getHomePage } from "../api/api";
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -21,7 +22,7 @@ function Homepage() {
     async function loadHomePage() {
       const data = await getHomePage();
 
-      // console.log("API DATA =>", data);
+     
 
       // preload images
       Object.values(data.heroImages).forEach((src) => {
@@ -161,9 +162,8 @@ function Homepage() {
 
   if (!homeData) {
     return (
-      <div className="h-screen flex items-center justify-center text-2xl">
-        Loading...
-      </div>
+            <PageSkeleton />
+
     );
   }
 
@@ -196,6 +196,7 @@ function Homepage() {
       <img
         src={homeData.heroImages.img2}
         alt=""
+         loading="lazy"
         className="living-image absolute inset-0 w-full h-full object-cover opacity-0"
       />
 
@@ -203,6 +204,7 @@ function Homepage() {
       <img
         src={homeData.heroImages.img3}
         alt=""
+         loading="lazy"
         className="bedroom-image absolute inset-0 w-full h-full object-cover opacity-0"
       />
 

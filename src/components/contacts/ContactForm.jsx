@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { submitContactForm } from "../../api/api";
 
 function ContactForm({ form }) {
   const [formData, setFormData] = useState({
@@ -10,6 +11,7 @@ function ContactForm({ form }) {
     message: "",
   });
 
+  // Handle Input Change
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,26 +19,40 @@ function ContactForm({ form }) {
     });
   };
 
-  const handleSubmit = (e) => {
+  // Handle Form Submit
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
+    try {
+      const data = await submitContactForm({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        project_type: formData.projectType,
+        estimated_budget: formData.budget,
+        message: formData.message,
+      });
 
-    alert("Form Submitted Successfully!");
+      console.log(data);
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      projectType: "",
-      budget: "",
-      message: "",
-    });
+      alert("Message sent successfully!");
+
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        projectType: "",
+        budget: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      alert("Something went wrong.");
+    }
   };
 
   return (
     <section className="bg-white rounded-3xl shadow-xl p-10">
-
       <h2 className="text-4xl font-bold text-black">
         {form.heading}
       </h2>
@@ -87,22 +103,10 @@ function ContactForm({ form }) {
           className="w-full border rounded-xl p-4 outline-none focus:ring-2 focus:ring-black"
         >
           <option value="">Select Project Type</option>
-
-          <option value="Residential">
-            Residential
-          </option>
-
-          <option value="Commercial">
-            Commercial
-          </option>
-
-          <option value="Interior">
-            Interior Design
-          </option>
-
-          <option value="Renovation">
-            Renovation
-          </option>
+          <option value="Residential">Residential</option>
+          <option value="Commercial">Commercial</option>
+          <option value="Interior">Interior Design</option>
+          <option value="Renovation">Renovation</option>
         </select>
 
         <input

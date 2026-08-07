@@ -31,16 +31,16 @@ function CardButton({
   return (
     <button
       onClick={onClick}
-      className="
-        inline-flex
-        items-center
-        gap-2
-        font-semibold
-        text-black
-        hover:text-gray-600
-        transition
-        `${className}`
-      "
+      className={`
+  inline-flex
+  items-center
+  gap-2
+  font-semibold
+  text-black
+  hover:text-gray-600
+  transition
+  ${className}
+`}
     >
       {children}
     </button>

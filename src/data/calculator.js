@@ -1,10 +1,4 @@
 const calculator = {
-  title: "Instant Cost Calculator",
-
-  description:
-    "Estimate the approximate construction cost of your residential or commercial project in under a minute. Simply choose your project type, enter the built-up area, and receive an instant budget estimate prepared using our standard pricing model.",
-
-  whatsappNumber: "918743993982",
 
   categories: [
     {

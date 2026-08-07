@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getProject } from "../api/api";
 import PageHero from "../components/pagehero/PageHero";
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
+
 function SingleProjectPage() {
   const { slug } = useParams();
 
@@ -20,9 +22,8 @@ function SingleProjectPage() {
 
   if (!project) {
     return (
-      <div className="h-screen flex items-center justify-center text-2xl">
-        Loading...
-      </div>
+          <PageSkeleton />
+
     );
   }
 

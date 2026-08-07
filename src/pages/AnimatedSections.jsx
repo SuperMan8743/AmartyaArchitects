@@ -5,34 +5,34 @@ import { SplitText } from "gsap/SplitText";
 
 gsap.registerPlugin(Observer, SplitText);
 
-const sections = [
-  {
-    label: "first",
-    heading: "Scroll down",
-    bg: "https://assets.codepen.io/16327/site-landscape-1.jpg",
-  },
-  {
-    label: "second",
-    heading: "Animated with GSAP",
-    bg: "https://assets.codepen.io/16327/site-landscape-2.jpg",
-  },
-  {
-    label: "third",
-    heading: "GreenSock",
-    bg: "https://assets.codepen.io/16327/site-landscape-3.jpg",
-  },
-  {
-    label: "fourth",
-    heading: "Animation platform",
-    bg: "https://assets.codepen.io/16327/site-landscape-4.jpg",
-  },
-  {
-    label: "fifth",
-    heading: "Keep scrolling",
-    bg: "https://assets.codepen.io/16327/site-landscape-5.jpg",
-    bgPosition: "50% 45%",
-  },
-];
+// const sections = [
+//   {
+//     label: "first",
+//     heading: "Scroll down",
+//     bg: "https://assets.codepen.io/16327/site-landscape-1.jpg",
+//   },
+//   {
+//     label: "second",
+//     heading: "Animated with GSAP",
+//     bg: "https://assets.codepen.io/16327/site-landscape-2.jpg",
+//   },
+//   {
+//     label: "third",
+//     heading: "GreenSock",
+//     bg: "https://assets.codepen.io/16327/site-landscape-3.jpg",
+//   },
+//   {
+//     label: "fourth",
+//     heading: "Animation platform",
+//     bg: "https://assets.codepen.io/16327/site-landscape-4.jpg",
+//   },
+//   {
+//     label: "fifth",
+//     heading: "Keep scrolling",
+//     bg: "https://assets.codepen.io/16327/site-landscape-5.jpg",
+//     bgPosition: "50% 45%",
+//   },
+// ];
 
 export default function AnimatedSections() {
   const sectionRefs = useRef([]);

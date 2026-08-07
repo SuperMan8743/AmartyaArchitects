@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { getVrPage } from "../api/api";
 import { Card, CardHeader, CardFooter, CardButton } from "../components/Card";
-import PageHero from "../components/pagehero/PageHero"
+import PageHero from "../components/pagehero/PageHero";
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
 const VrPage = () => {
   const [vrData, setVrData] = useState(null);
@@ -11,28 +12,26 @@ const VrPage = () => {
       const data = await getVrPage();
 
       setVrData(data);
+      console.log("FULL VR DATA:", data);
+console.log("VR TOURS:", data.tours);
     }
 
     loadVrPage();
   }, []);
 
   if (!vrData) {
-    return (
-      <div className="h-screen flex items-center justify-center text-2xl">
-        Loading...
-      </div>
-    );
+    return <PageSkeleton />;
   }
 
   return (
     <>
       {/* Hero */}
 
-    <PageHero
-  image={vrData.hero.bannerImage}
-  title={vrData.hero.title}
-  subTitle={vrData.hero.subTitle}
-/>
+      <PageHero
+        image={vrData.hero.bannerImage}
+        title={vrData.hero.title}
+        subTitle={vrData.hero.subTitle}
+      />
 
       {/* Introduction */}
 
@@ -67,11 +66,13 @@ const VrPage = () => {
 
               {/* Category */}
 
-              <div className="absolute top-6 left-6">
-                <span className="px-4 py-2 rounded-full border border-white/50 text-white text-sm backdrop-blur">
-                  {tour.category}
-                </span>
-              </div>
+              {tour.category && (
+                <div className="absolute top-6 left-6">
+                  <span className="px-4 py-2 rounded-full border border-white/50 text-white text-sm backdrop-blur">
+                    {tour.category}
+                  </span>
+                </div>
+              )}
 
               {/* Bottom Content */}
 

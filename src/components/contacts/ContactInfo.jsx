@@ -98,7 +98,7 @@ function ContactInfo({ info }) {
             </h4>
 
             <p className="text-gray-500">
-              {info.officeHours}
+              {info.workingHours}
             </p>
           </div>
 

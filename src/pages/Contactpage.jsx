@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getContactPage } from "../api/api";
 
 import PageHero from "../components/pagehero/PageHero"
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
 import {
   ContactInfo,
@@ -24,9 +25,7 @@ function ContactPage() {
 
   if (!contactData) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        Loading...
-      </div>
+      <PageSkeleton />
     );
   }
 
@@ -34,11 +33,11 @@ function ContactPage() {
     <>
       {/* Hero */}
 
-      <PageHero
-        image={contactData.hero.bannerImage}
-        title={contactData.hero.title}
-        subTitle={contactData.hero.subTitle}
-      />
+   <PageHero
+  image={contactData.hero.bannerImage}
+  title={contactData.hero.title}
+  subTitle={contactData.hero.subTitle}
+/>
 
       {/* Contact Section */}
 
@@ -46,13 +45,11 @@ function ContactPage() {
 
         <div className="grid lg:grid-cols-2 gap-20">
 
-          <ContactInfo
-            info={contactData.info}
-          />
+          <ContactInfo info={contactData.info} />
 
-          <ContactForm
-            form={contactData.form}
-          />
+       <ContactForm
+  form={contactData.info}
+/>
 
         </div>
 
@@ -60,9 +57,7 @@ function ContactPage() {
 
       {/* Map */}
 
-      <ContactMap
-        embedUrl={contactData.map.embedUrl}
-      />
+    <ContactMap embedUrl={contactData.map.embedUrl} />
     </>
   );
 }

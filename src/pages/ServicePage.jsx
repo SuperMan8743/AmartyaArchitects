@@ -4,7 +4,8 @@ import ServiceCard from "../components/serviceCard/ServiceCard";
 import ProcessCard from "../components/serviceCard/ProcessCard";
 import WhyChooseCard from "../components/serviceCard/WhyChooseCard";
 import { Link } from "react-router-dom";
-import PageHero from "../components/pagehero/PageHero"
+import PageHero from "../components/pagehero/PageHero";
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
 const ServicePage = () => {
   const [serviceData, setServiceData] = useState(null);
@@ -21,9 +22,8 @@ const ServicePage = () => {
 
   if (!serviceData) {
     return (
-      <div className="h-screen flex items-center justify-center text-2xl">
-        Loading...
-      </div>
+          <PageSkeleton />
+
     );
   }
 
@@ -57,17 +57,14 @@ const ServicePage = () => {
       {/* how we work  */}
       <section className="max-w-7xl mx-auto py-24 px-6">
         <div className="text-center mb-16">
-          <h2 className="text-5xl font-bold">How We Work</h2>
+          <h2 className="text-5xl font-bold">{serviceData.process.heading}</h2>
 
-          <p className="text-gray-500 mt-5">
-            Our streamlined process ensures every project is delivered with
-            creativity, precision, and transparency.
-          </p>
+          <p className="text-gray-500 mt-5">{serviceData.process.subHeading}</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {serviceData.process.map((item) => (
-            <ProcessCard key={item.id} process={item} />
+          {serviceData.process.steps.map((item, index) => (
+            <ProcessCard key={index} process={item} />
           ))}
         </div>
       </section>
@@ -75,18 +72,18 @@ const ServicePage = () => {
       <section className="max-w-7xl mx-auto py-24 px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold">
-            {serviceData.whyChooseUs.title}
+            {serviceData.whyChooseUs.heading}
           </h2>
 
           <p className="mt-5 text-gray-600 max-w-3xl mx-auto">
-            {serviceData.whyChooseUs.subTitle}
+            {serviceData.whyChooseUs.subHeading}
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {serviceData.whyChooseUs.points.map((item) => (
-            <WhyChooseCard key={item.id} item={item} />
-          ))}
+          {serviceData.whyChooseUs.items.map((item, index) => (
+  <WhyChooseCard key={index} item={item} />
+))}
         </div>
       </section>
       {/* CTA */}

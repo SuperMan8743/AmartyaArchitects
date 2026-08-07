@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from "react";
-import { getPrivacyPolicy } from "../api/api";
+import { getTermsConditions } from "../api/api";
 import PageHero from "../components/pagehero/PageHero";
 import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
-function PrivacyPolicyPage() {
-  const [privacyData, setPrivacyData] = useState(null);
+function TermConditionPage() {
+  const [termConditionData, setTermConditionData] = useState(null);
 
   useEffect(() => {
-    async function loadPrivacyPolicy() {
+    async function loadTermCondition() {
       try {
-        const data = await getPrivacyPolicy();
+        const data = await getTermsConditions();
         console.log(data); // 👈 ye add karo
-        setPrivacyData(data);
+        setTermConditionData(data);
       } catch (error) {
         console.error("Error loading Privacy Policy:", error);
       }
     }
 
-    loadPrivacyPolicy();
+    loadTermCondition();
   }, []);
 
-  if (!privacyData) {
+  if (!termConditionData) {
     return (
-            <PageSkeleton />
+          <PageSkeleton />
 
     );
   }
-
   return (
     <>
       <PageHero
-        image={privacyData.hero.bannerImage}
-        title={privacyData.hero.title}
-        subTitle={privacyData.hero.subTitle}
+        image={termConditionData.hero.bannerImage}
+        title={termConditionData.hero.title}
+        subTitle={termConditionData.hero.subTitle}
         height="h-[70vh]"
       />
       <section className="max-w-5xl mx-auto px-6 py-20">
@@ -44,7 +43,7 @@ function PrivacyPolicyPage() {
                prose-li:text-gray-300
                prose-a:text-blue-400"
           dangerouslySetInnerHTML={{
-            __html: privacyData.content,
+            __html: termConditionData.content,
           }}
         />
       </section>
@@ -52,4 +51,4 @@ function PrivacyPolicyPage() {
   );
 }
 
-export default PrivacyPolicyPage;
+export default TermConditionPage;

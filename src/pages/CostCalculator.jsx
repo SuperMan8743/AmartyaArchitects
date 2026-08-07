@@ -7,18 +7,13 @@ import StepCategory from "../components/costCalculator/StepCategory";
 import StepArea from "../components/costCalculator/StepArea";
 import StepLead from "../components/costCalculator/StepLead";
 import Result from "../components/costCalculator/Result";
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
 function CostCalculator() {
   const [calculatorData, setCalculatorData] = useState(null);
 
   const [step, setStep] = useState(1);
 
-  // const [formData, setFormData] = useState({
-  //   category: "",
-  //   area: "",
-  //   name: "",
-  //   phone: "",
-  // });
   const [formData, setFormData] = useState({
     category: "",
     floors: [
@@ -63,9 +58,8 @@ function CostCalculator() {
 
   if (!calculatorData) {
     return (
-      <div className="h-screen flex items-center justify-center text-xl">
-        Loading...
-      </div>
+            <PageSkeleton />
+
     );
   }
 
@@ -74,11 +68,11 @@ function CostCalculator() {
       <section className="min-h-screen my-24 bg-[#0B1623]  px-4">
         <div className="text-center mb-10">
           <h1 className="text-5xl font-bold text-white">
-            {calculatorData.title}
+            {calculatorData.intro.heading}
           </h1>
 
           <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
-            {calculatorData.description}
+            {calculatorData.intro.description}
           </p>
         </div>
         <div className="max-w-xl mx-auto rounded-3xl bg-[#111827] border border-white/10 p-10 shadow-2xl">

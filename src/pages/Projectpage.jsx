@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Masonry from "react-masonry-css";
 import ProjectCard from "../components/projectCard/ProjectCard";
 import { getProjects } from "../api/api";
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
 const breakpointColumnsObj = {
   default: 3,
@@ -21,11 +22,10 @@ function ProjectPage() {
     loadProjects();
   }, []);
 
-  if (!projects.length) {
+  if (!projects) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        Loading...
-      </div>
+            <PageSkeleton />
+
     );
   }
 

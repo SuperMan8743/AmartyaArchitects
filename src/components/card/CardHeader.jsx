@@ -12,11 +12,6 @@ function CardHeader({ image, alt, className = "", children }) {
       />
     </div>
 
-    //  <img
-    //   src={image}
-    //   alt={alt}
-    //   className=" object-cover rounded-2xl"
-    // />
   );
 }
 

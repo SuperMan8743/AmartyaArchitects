@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 
 import PageHero from "../components/pageHero/PageHero";
 import { getNotFoundPage } from "../api/api";
+import PageSkeleton from "../components/pageSkeleton/PageSkeleton";
 
 function NotFoundPage() {
   const [pageData, setPageData] = useState(null);
@@ -18,9 +19,8 @@ function NotFoundPage() {
 
   if (!pageData) {
     return (
-      <div className="h-screen flex items-center justify-center">
-        Loading...
-      </div>
+          <PageSkeleton />
+
     );
   }
 

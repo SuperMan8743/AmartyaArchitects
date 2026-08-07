@@ -1,13 +1,14 @@
 import React, { useState,useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ siteSettings }) {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const location = useLocation();
   const isHome = location.pathname === "/";
+  
 useEffect(() => {
   setMenuOpen(false);
+  
 }, [location.pathname]);
   return (
     <nav
@@ -17,7 +18,8 @@ useEffect(() => {
     >
       <div className="flex justify-between items-center">
         <Link to="/" className="text-2xl nav-link">
-          Amartya Architects
+          {/* Amartya Architects */}
+          {siteSettings?.companyName}
         </Link>
 
         <ul className="hidden md:flex gap-10">
