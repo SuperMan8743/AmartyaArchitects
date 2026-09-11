@@ -22,21 +22,95 @@ async function getFeaturedImage(mediaId) {
 
 // project slug
 export async function getProject(slug) {
-  const { data } = await API.get(`/project?slug=${slug}`);
+  const { data } = await API.get(
+    `/project?slug=${slug}&_embed`
+  );
 
-  return await mapProject(data[0]);
+  const project = data[0];
+
+  if (!project) {
+    throw new Error("Project not found");
+  }
+
+  const categories = await getProjectCategories();
+
+  // ACF Hero Image
+  const heroImageField = project.acf?.hero_image;
+
+  let heroImage = "";
+
+  // Agar ACF Media ID return kar raha hai
+  if (typeof heroImageField === "number") {
+    heroImage = await getFeaturedImage(heroImageField);
+  }
+
+  // Agar ACF URL return kar raha hai
+  else if (typeof heroImageField === "string") {
+    heroImage = heroImageField;
+  }
+
+  // Agar kabhi Image Array return kare
+  else if (
+    heroImageField &&
+    typeof heroImageField === "object" &&
+    heroImageField.url
+  ) {
+    heroImage = heroImageField.url;
+  }
+
+  return mapProject(project, categories, heroImage);
 }
 
-// projects
 
+// get project categories
+async function getProjectCategories() {
+  const { data } = await API.get(
+    "/project_category?per_page=100"
+  );
+
+  return data;
+}
+
+
+// all projects
 export async function getProjects() {
-  const { data } = await API.get("/project");
+  const [{ data: projects }, categories] = await Promise.all([
+    API.get("/project?per_page=100&_embed"),
+    getProjectCategories(),
+  ]);
 
-  return await Promise.all(data.map(mapProject));
+  return projects.map((project) =>
+    mapProject(project, categories)
+  );
 }
 
-async function mapProject(project) {
-  const image = await getFeaturedImage(project.featured_media);
+
+// map project
+function mapProject(
+  project,
+  allCategories = [],
+  heroImage = ""
+) {
+  // Featured Image = Project Card Image
+  const thumbnail =
+    project._embedded?.["wp:featuredmedia"]?.[0]?.source_url || "";
+
+  // Project Categories
+  const categories = (project.project_category || [])
+    .map((categoryId) => {
+      const category = allCategories.find(
+        (item) => item.id === categoryId
+      );
+
+      if (!category) return null;
+
+      return {
+        id: category.id,
+        name: category.name,
+        slug: category.slug,
+      };
+    })
+    .filter(Boolean);
 
   return {
     id: project.id,
@@ -44,10 +118,14 @@ async function mapProject(project) {
 
     title: project.title.rendered,
 
-    thumbnail: image,
-    bannerImage: image,
+    // Projects listing/card
+    thumbnail,
 
-    category: project.acf?.project_category?.[0] || "",
+    // Single Project Hero
+    // Agar Hero Image nahi hai to Featured Image fallback
+    bannerImage: heroImage || thumbnail,
+
+    categories,
 
     hero: {
       subTitle: project.acf?.subheading || "",
@@ -57,13 +135,12 @@ async function mapProject(project) {
 
     gallery:
       project.acf?.photo_gallery?.project_gallery?.[0]?.map(
-        (img) => img.full_image_url,
+        (img) => img.full_image_url
       ) || [],
 
     height: 500,
   };
 }
-
 // Home page
 export async function getHomePage() {
   const { data } = await API.get("/pages?slug=home");
@@ -118,7 +195,7 @@ export async function getAboutPage() {
 // getTeam
 
 export async function getTeam() {
-  const { data } = await API.get("/team");
+  const { data } = await API.get("/team?per_page=100");
 
   const members = await Promise.all(
     data.map(async (member) => {
@@ -130,9 +207,13 @@ export async function getTeam() {
         designation: member.acf?.designation || "",
         bio: member.acf?.bio || "",
         image,
+        order: Number(member.acf?.display_order) || 999,
       };
     }),
   );
+
+  // CMS ke Display Order ke according sorting
+  members.sort((a, b) => a.order - b.order);
 
   return {
     heading: "Our Team",
