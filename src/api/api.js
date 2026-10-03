@@ -547,6 +547,7 @@ export async function getCareerPage() {
   };
 }
 
+// Page Not Found 
 export async function getNotFoundPage() {
   return pages.notFound;
 }
@@ -564,6 +565,7 @@ export async function getSiteSettings() {
   return {
     companyName: page.acf?.company_name || "",
     companyTagline: page.acf?.company_tagline || "",
+    quotationNotificationEmail: page.acf?.quotation_notification_email || "",
 
     logo,
 
@@ -580,4 +582,46 @@ export async function getSiteSettings() {
 
     copyright: page.acf?.copyright_text || "",
   };
+}
+
+
+// StudioScopes
+export async function getStudioScopes() {
+  const { data } = await API.get(
+    "/studio_scope?per_page=100"
+  );
+
+  return data
+    .filter((scope) => scope.acf?.active)
+    .map((scope) => ({
+      id: scope.id,
+      name: scope.title.rendered,
+      rate: Number(scope.acf?.rate || 0),
+      rateType: scope.acf?.rate_type || "per_sqft",
+      displayOrder: Number(scope.acf?.display_order || 0),
+    }))
+    .sort((a, b) => a.displayOrder - b.displayOrder);
+}
+
+export async function submitQuotation(formData) {
+  const { data } = await axios.post(
+    "https://cms.amartyaarchitects.com/wp-json/amartya/v1/quotation",
+    formData
+  );
+
+  return data;
+}
+
+
+
+// Vlogs
+export async function getVlogs() {
+  const { data } = await API.get("/vlog?per_page=100");
+
+  return data.map((vlog) => ({
+    id: vlog.id,
+    slug: vlog.slug,
+    title: vlog.title.rendered,
+    youtubeUrl: vlog.acf?.youtube_video_url || "",
+  }));
 }

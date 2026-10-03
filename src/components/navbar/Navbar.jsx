@@ -53,6 +53,11 @@ useEffect(() => {
               VR
             </Link>
           </li>
+           <li>
+            <Link className="nav-link" to="/vlog">
+              Vlog
+            </Link>
+          </li>
           <li>
             <Link className="nav-link" to="/contact">
               Contact Us

@@ -17,6 +17,7 @@ import TermConditionPage from "../../pages/TermConditionPage";
 import CareerPage from "../../pages/CareerPage";
 import NotFoundPage from "../../pages/NotFoundPage";
 
+import VlogPage from "../../pages/VlogPage";
 
 import { getSiteSettings } from "../../api/api";
 function Layout() {
@@ -48,6 +49,7 @@ const [siteSettings, setSiteSettings] = useState(null);
           <Route path="/vr" element={<VrPage />} /> 
           <Route path="/privacyPolicy" element={<PrivacyPolicyPage />} />
           <Route path="/termsCondition" element={<TermConditionPage />} />
+          <Route path="/vlog" element={<VlogPage />} />
           <Route path="/career" element={<CareerPage />} />
 
           <Route path="*" element={<NotFoundPage />} />
